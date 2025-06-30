@@ -1,67 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css"
-    />
-    <title>Flask-Vercel Template</title>
-  </head>
-  <body>
-    <main class="container">
-      <nav>
-        <ul>
-          <li>
-            <a href="https://fullyhacks.acmcsuf.com/" target="_blank"
-              ><strong>FullyHacks</strong></a
-            >
-          </li>
-          <li>
-            <a
-              href="https://github.com/acmcsufoss/hackpack_flask_vercel"
-              target="_blank"
-              >Source Code</a
-            >
-          </li>
-        </ul>
-      </nav>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UART Port Configuration</title>
+</head>
+<body>
+    <div class="container">
+        <h1>UART Port Configuration</h1>
 
-      <h1>A premade Flask template!</h1>
+        <div class="connection-stats" id="connection-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="connected-count">0</div>
+                <div class="stat-label">Connected</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="disconnected-count">0</div>
+                <div class="stat-label">Disconnected</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="error-count">0</div>
+                <div class="stat-label">Errors</div>
+            </div>
+        </div>
 
-      <p>
-        Are you looking to build a web application using Flask but don't know
-        where to start? Look no further! Our premade Flask template provides you
-        with a ready-to-use foundation to kickstart your web development
-        journey.
-      </p>
-      <p>
-        Our template includes all the necessary files and dependencies you need
-        to get started, so you don't have to worry about configuring your Flask
-        environment from scratch. Our template comes with a clean and modern
-        design using
-        <a href="https://picocss.com" target="_blank">pico.css</a> that you can
-        easily customize to fit your brand or project requirements. The template
-        is fully responsive, ensuring that your web application looks great on
-        any device, whether it's a desktop, laptop, or mobile device. Built
-        specifically with Vercel in mind, deploying with this template is as
-        simple as clicking the provided link in our README.md!
-      </p>
-      <p>Good luck to all FullyHacks participants!</p>
+        <div class="control-bar">
+            <button class="refresh-btn" onclick="loadPortConfigs()">
+                <span id="refresh-text">🔄 Refresh Port Status</span>
+            </button>
+            <div class="status-indicator">
+                <div id="connection-indicator" style="width: 12px; height: 12px; border-radius: 50%; background: #95a5a6;"></div>
+                <span id="connection-status">Loading...</span>
+            </div>
+        </div>
 
-      <nav>
-        <details role="list">
-          <summary aria-haspopup="listbox" role="button">Theme</summary>
-          <ul role="listbox">
-            <li><a href="#" data-theme-switcher="auto">Auto</a></li>
-            <li><a href="#" data-theme-switcher="light">Light</a></li>
-            <li><a href="#" data-theme-switcher="dark">Dark</a></li>
-          </ul>
-        </details>
-      </nav>
-    </main>
-  </body>
-  <script src="/static/minimal-theme-switcher.js"></script>
+        <div id="ports-container" class="ports-grid">
+            <!-- Port cards will be dynamically generated here -->
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='uart-config.js') }}"></script>
+</body>
 </html>
