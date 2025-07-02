@@ -365,22 +365,6 @@ function createPortCard(port, config) {
                     <span>Parity:</span>
                     <span>${config.parity.charAt(0).toUpperCase() + config.parity.slice(1)}</span>
                 </div>
-                <div class="config-detail">
-                    <span>Flow Control:</span>
-                    <span>Disabled</span>
-                </div>
-            </div>
-            
-            <div class="button-group">
-                <button class="btn-primary" onclick="configurePort('${port}')">
-                    ⚙️ Configure Port
-                </button>
-                <button class="btn-secondary" onclick="disconnectPort('${port}')">
-                    🔌 Disconnect
-                </button>
-                <button class="btn-test" onclick="testPort('${port}')">
-                    🔍 Test
-                </button>
             </div>
             
             <div id="message-${port}" class="message"></div>
